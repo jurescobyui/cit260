@@ -25,6 +25,7 @@ public class Product {
 	
 	public Product(int id, String name, double price) {
 		
+		
 	}
 	
 
