@@ -4,6 +4,7 @@ import java.io.*;
 public class Inventory {
 
 	public static void main(String[] args) {
+		
 		// Displays the main menu 
 		displayMenu();  // call to method displayMenu()
 	
@@ -27,6 +28,8 @@ public class Inventory {
 			switch (menu) {
 			case 1:
 				System.out.println("You want to Add Product");
+				
+				addProduct();
 				waitInput(null, null);
 				displayMenu();
 				break;
@@ -67,7 +70,18 @@ public class Inventory {
 		
 	}// end of displayMenu 
 	
-	
+	// addProduct Method
+	private static void addProduct() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter Product name: ");
+		String name= input.nextLine();
+		System.out.print("Enter price: ");
+		double price = input.nextDouble();
+		System.out.println("You Entered: " + name + " and " + price);
+		
+		
+	}
+
 	/***********
 	 * This method clears the screen in windows System only
 	 * code from - https://stackoverflow.com/questions/2979383/java-clear-the-console
