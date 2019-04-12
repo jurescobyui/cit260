@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.*;
 import java.io.*;
 public class Inventory {
@@ -27,7 +26,7 @@ public class Inventory {
 			int menu = input.nextInt();
 			switch (menu) {
 			case 1:
-				System.out.println("You want to Add Product");
+				//System.out.println("You want to Add Product");
 				
 				addProduct();
 				waitInput(null, null);
@@ -73,13 +72,55 @@ public class Inventory {
 	// addProduct Method
 	private static void addProduct() {
 		Scanner input = new Scanner(System.in);
+		boolean continueInput =true;
 		System.out.print("Enter Product name: ");
 		String name= input.nextLine();
-		System.out.print("Enter price: ");
-		double price = input.nextDouble();
-		System.out.println("You Entered: " + name + " and " + price);
+		do {
+			try {
+				System.out.print("Enter price: ");
+				double price = input.nextDouble();
+				int id=getLastProductID();
+				System.out.println("You Entered: " + name + " and " + price);
+				addProductToFile(id,name,price);
+				continueInput=false;
+			}
+			catch(Exception e) {
+				System.out.println("Please Enter a double value.");
+				input.nextLine();
+							
+			}
+		}
+		while(continueInput);
 		
 		
+		
+		
+		
+		
+		
+	}
+
+	private static void addProductToFile(int id, String name, double price) {
+		String strID=Integer.toString(id);
+		String strPrice=Double.toString(price);
+		try {
+			FileWriter myWriter = new FileWriter("products.txt",true);
+			myWriter.write(strID + ", " + name + ", " + strPrice + "\r\n");
+			
+			myWriter.close();
+			System.out.println("Successfully wrote to the file");
+		}
+		 catch(IOException e) {
+			 System.out.println("An error occured");
+			 e.printStackTrace();
+			 
+		 }
+		
+	}
+
+	private static int getLastProductID() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	/***********
